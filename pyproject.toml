@@ -1,14 +1,17 @@
 [project]
 name = "mypy-config-generator"
 description = "Generates mypy configuration"
-version = "0.1.0-dev"
+version = "1.0.0"
 authors = [
     { name = "KRunchPL", email = "krunchfrompoland@gmail.com" },
 ]
 license = "Apache-2.0"
 readme = "README.md"
 requires-python = ">=3.12,<4"
-dependencies = []
+dependencies = [
+    "beautifulsoup4 ==4.13.3",
+    "requests ==2.32.3",
+]
 
 [project.urls]
 homepage = "https://github.com/KRunchPL/mypy-config-generator"
@@ -22,13 +25,15 @@ packages = [
 
 [dependency-groups]
 dev = [
-    "darglint >=1.8.1,<2",
-    "flake8 >=7.1.1,<8",
-    "mypy >=1.15.0,<1.16.0",
-    "pytest >=8.3.4,<9",
-    "pytest-cov >=6.0.0,<7",
-    "pytest-mock >=3.14.0,<4",
-    "ruff >=0.9.5,<0.10.0",
+    "darglint ==1.8.1",
+    "flake8 ==7.1.1",
+    "mypy >=1.15.0",
+    "pytest ==8.3.4",
+    "pytest-cov ==6.0.0",
+    "pytest-mock ==3.14.0",
+    "ruff ==0.9.5",
+    "types-beautifulsoup4 ==4.12.0.20250204",
+    "types-requests ==2.32.0.20241016",
 ]
 
 [build-system]
