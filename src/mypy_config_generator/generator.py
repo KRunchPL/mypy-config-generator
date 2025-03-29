@@ -8,6 +8,7 @@ from .configuration import (
     OVERRIDE_DEFAULT_VALUES,
     SETTINGS_HTML_FILE,
     STRICT_STRING,
+    VERSION_FILE,
 )
 
 
@@ -137,6 +138,7 @@ def generate_configuration() -> None:
     e_main_section = e_article.findChild('section')
     assert isinstance(e_main_section, bs4.Tag)
     version = re.search(r'mypy (\d+\.\d+.\d+) documentation', e_page.find('title').text).groups()[0]  # type: ignore [union-attr]
+    VERSION_FILE.write_text(version, encoding='utf-8')
     config = MypyConfiguration(version)
     for e_section in e_main_section.findChildren('section'):
         section_name = e_section.findChild('h2').contents[0]
@@ -157,7 +159,7 @@ def generate_configuration() -> None:
                 e_paragraph.text for e_paragraph in e_setting_description.findChildren('p', recursive=False)
             ]
             config.new_setting(setting_name, default_value, comments)
-    CONFIGURATION_FILE.write_text(str(config))
+    CONFIGURATION_FILE.write_text(str(config), encoding='utf-8')
 
     def _parse_flag(flag: str) -> tuple[str, str]:
         if flag.startswith('no_'):
@@ -169,4 +171,4 @@ def generate_configuration() -> None:
         for flag in ''.join(line.strip() for line in STRICT_STRING.splitlines()).split(', ')
     )
     config.update_default_values(overrides)
-    ADJUSTED_CONFIGURATION_FILE.write_text(str(config))
+    ADJUSTED_CONFIGURATION_FILE.write_text(str(config), encoding='utf-8')
