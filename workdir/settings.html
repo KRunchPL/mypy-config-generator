@@ -5,8 +5,8 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Inline configuration" href="inline_config.html" /><link rel="prev" title="The mypy command line" href="command_line.html" />
 
-    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
-        <title>The mypy configuration file - mypy 1.15.0 documentation</title>
+    <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
+        <title>The mypy configuration file - mypy 1.16.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">mypy 1.15.0 documentation</div></a>
+      <a href="index.html"><div class="brand">mypy 1.16.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -194,7 +194,7 @@
     <img class="sidebar-logo" src="_static/mypy_light.svg" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">mypy 1.15.0 documentation</span>
+  <span class="sidebar-brand-text">mypy 1.16.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -572,6 +572,21 @@ equivalent to the above INI example.</p>
 </dd></dl>
 
 <dl class="std confval">
+<dt class="sig sig-object std" id="confval-exclude_gitignore">
+<span class="sig-name descname"><span class="pre">exclude_gitignore</span></span><a class="headerlink" href="#confval-exclude_gitignore" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+<dt class="field-even">Default<span class="colon">:</span></dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+<p>This flag will add everything that matches <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file(s) to <a class="reference internal" href="#confval-exclude"><code class="xref std std-confval docutils literal notranslate"><span class="pre">exclude</span></code></a>.
+This option may only be set in the global section (<code class="docutils literal notranslate"><span class="pre">[mypy]</span></code>).</p>
+</dd></dl>
+
+<dl class="std confval">
 <dt class="sig sig-object std" id="confval-namespace_packages">
 <span class="sig-name descname"><span class="pre">namespace_packages</span></span><a class="headerlink" href="#confval-namespace_packages" title="Link to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
@@ -760,7 +775,7 @@ control errors in 3rd party code.</p>
 </dl>
 <p>Specifies the Python version used to parse and check the target
 program.  The string should be in the format <code class="docutils literal notranslate"><span class="pre">MAJOR.MINOR</span></code> –
-for example <code class="docutils literal notranslate"><span class="pre">2.7</span></code>.  The default is the version of the Python
+for example <code class="docutils literal notranslate"><span class="pre">3.9</span></code>.  The default is the version of the Python
 interpreter used to run mypy.</p>
 <p>This option may only be set in the global section (<code class="docutils literal notranslate"><span class="pre">[mypy]</span></code>).</p>
 </dd></dl>
@@ -1130,6 +1145,21 @@ declared with a non- <code class="docutils literal notranslate"><span class="pre
 redundant after performing type analysis.</p>
 </dd></dl>
 
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-deprecated_calls_exclude">
+<span class="sig-name descname"><span class="pre">deprecated_calls_exclude</span></span><a class="headerlink" href="#confval-deprecated_calls_exclude" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>comma-separated list of strings</p>
+</dd>
+</dl>
+<p>Selectively excludes functions and methods defined in specific packages,
+modules, and classes from the <a class="reference internal" href="error_code_list2.html#code-deprecated"><span class="std std-ref">deprecated</span></a> error code.
+This also applies to all submodules of packages (i.e. everything inside
+a given prefix). Note, this option does not support per-file configuration,
+the exclusions list is defined globally for all your code.</p>
+</dd></dl>
+
 </section>
 <section id="suppressing-errors">
 <h2>Suppressing errors<a class="headerlink" href="#suppressing-errors" title="Link to this heading">¶</a></h2>
@@ -1167,6 +1197,47 @@ section of the command line docs.</p>
 </dl>
 <p>Causes mypy to suppress errors caused by not being able to fully
 infer the types of global and class variables.</p>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-allow_redefinition_new">
+<span class="sig-name descname"><span class="pre">allow_redefinition_new</span></span><a class="headerlink" href="#confval-allow_redefinition_new" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+<dt class="field-even">Default<span class="colon">:</span></dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+<p>By default, mypy won’t allow a variable to be redefined with an
+unrelated type. This <em>experimental</em> flag enables the redefinition of
+unannotated variables with an arbitrary type. You will also need to enable
+<a class="reference internal" href="#confval-local_partial_types"><code class="xref std std-confval docutils literal notranslate"><span class="pre">local_partial_types</span></code></a>.
+Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">maybe_convert</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">b</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Assign &quot;str&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">n</span>       <span class="c1"># Assign &quot;int&quot;</span>
+    <span class="c1"># Type of &quot;x&quot; is &quot;int | str&quot; here.</span>
+    <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
+<p>This also enables an unannotated variable to have different types in different
+code locations:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">check</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="c1"># Type of &quot;x&quot; is &quot;int&quot; here.</span>
+        <span class="o">...</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]:</span>
+        <span class="c1"># Type of &quot;x&quot; is &quot;str&quot; here.</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+<p>Note: We are planning to turn this flag on by default in a future mypy
+release, along with <a class="reference internal" href="#confval-local_partial_types"><code class="xref std std-confval docutils literal notranslate"><span class="pre">local_partial_types</span></code></a>.</p>
 </dd></dl>
 
 <dl class="std confval">
@@ -1211,7 +1282,8 @@ Example where this can be useful:</p>
 </dd>
 </dl>
 <p>Disallows inferring variable type for <code class="docutils literal notranslate"><span class="pre">None</span></code> from two assignments in different scopes.
-This is always implicitly enabled when using the <a class="reference internal" href="mypy_daemon.html#mypy-daemon"><span class="std std-ref">mypy daemon</span></a>.</p>
+This is always implicitly enabled when using the <a class="reference internal" href="mypy_daemon.html#mypy-daemon"><span class="std std-ref">mypy daemon</span></a>.
+This will be enabled by default in a future mypy release.</p>
 </dd></dl>
 
 <dl class="std confval">
@@ -1248,7 +1320,7 @@ This is always implicitly enabled when using the <a class="reference internal" h
 <dd class="field-even"><p>False</p>
 </dd>
 </dl>
-<p>This flag enables additional checks that are technically correct but may be impractical in real code.
+<p>This flag enables additional checks that are technically correct but may be impractical.
 See <a class="reference internal" href="command_line.html#cmdoption-mypy-extra-checks"><code class="xref std std-option docutils literal notranslate"><span class="pre">mypy</span> <span class="pre">--extra-checks</span></code></a> for more info.</p>
 </dd></dl>
 
@@ -1276,20 +1348,6 @@ treats stub files as if this is always disabled. For example:</p>
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bar&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-</dd></dl>
-
-<dl class="std confval">
-<dt class="sig sig-object std" id="confval-strict_concatenate">
-<span class="sig-name descname"><span class="pre">strict_concatenate</span></span><a class="headerlink" href="#confval-strict_concatenate" title="Link to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>boolean</p>
-</dd>
-<dt class="field-even">Default<span class="colon">:</span></dt>
-<dd class="field-even"><p>False</p>
-</dd>
-</dl>
-<p>Make arguments prepended via <code class="docutils literal notranslate"><span class="pre">Concatenate</span></code> be truly positional-only.</p>
 </dd></dl>
 
 <dl class="std confval">
@@ -1922,7 +1980,7 @@ of your repo (or append it to the end of an existing <code class="docutils liter
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="c1"># mypy global options:</span>
 
 <span class="k">[tool.mypy]</span>
-<span class="n">python_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.7&quot;</span>
+<span class="n">python_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;3.9&quot;</span>
 <span class="n">warn_return_any</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 <span class="n">warn_unused_configs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 <span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
@@ -2037,7 +2095,7 @@ of your repo (or append it to the end of an existing <code class="docutils liter
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=70d5d4a5"></script>
+</div><script src="_static/documentation_options.js?v=e2aa0a4e"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/furo.js?v=5fa4622c"></script>
