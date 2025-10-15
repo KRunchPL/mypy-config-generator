@@ -16,6 +16,5 @@ OVERRIDE_DEFAULT_VALUES = {
     'files': '.',
     'strict': 'True',
     'warn_unreachable': 'True',
-    'strict_concatenate': 'True',
     'warn_incomplete_stub': 'True',
 }
