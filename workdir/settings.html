@@ -7,7 +7,7 @@
         <link rel="prefetch" href="_static/mypy_light.svg" as="image">
 
     <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
-        <title>The mypy configuration file - mypy 1.20.2 documentation</title>
+        <title>The mypy configuration file - mypy 2.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
@@ -163,7 +163,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">mypy 1.20.2 documentation</div></a>
+      <a href="index.html"><div class="brand">mypy 2.0.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -187,7 +187,7 @@
     <img class="sidebar-logo" src="_static/mypy_light.svg" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">mypy 1.20.2 documentation</span>
+  <span class="sidebar-brand-text">mypy 2.0.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -766,7 +766,7 @@ control errors in 3rd party code.</p>
 </dl>
 <p>Specifies the Python version used to parse and check the target
 program.  The string should be in the format <code class="docutils literal notranslate"><span class="pre">MAJOR.MINOR</span></code> –
-for example <code class="docutils literal notranslate"><span class="pre">3.9</span></code>.  The default is the version of the Python
+for example <code class="docutils literal notranslate"><span class="pre">3.10</span></code>.  The default is the version of the Python
 interpreter used to run mypy.</p>
 <p>This option may only be set in the global section (<code class="docutils literal notranslate"><span class="pre">[mypy]</span></code>).</p>
 </dd></dl>
@@ -1191,8 +1191,8 @@ infer the types of global and class variables.</p>
 </dd></dl>
 
 <dl class="std confval">
-<dt class="sig sig-object std" id="confval-allow_redefinition_new">
-<span class="sig-name descname"><span class="pre">allow_redefinition_new</span></span><a class="headerlink" href="#confval-allow_redefinition_new" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="confval-allow_redefinition">
+<span class="sig-name descname"><span class="pre">allow_redefinition</span></span><a class="headerlink" href="#confval-allow_redefinition" title="Link to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>boolean</p>
@@ -1203,9 +1203,9 @@ infer the types of global and class variables.</p>
 </dl>
 <p>By default, mypy won’t allow a variable to be redefined with an
 unrelated type. This flag enables the redefinition of unannotated
-variables with an arbitrary type. You will also need to enable
-<a class="reference internal" href="#confval-local_partial_types"><code class="xref std std-confval docutils literal notranslate"><span class="pre">local_partial_types</span></code></a>.
-Example:</p>
+variables with an arbitrary type. This also requires
+<a class="reference internal" href="#confval-local_partial_types"><code class="xref std std-confval docutils literal notranslate"><span class="pre">local_partial_types</span></code></a>, which is enabled by default starting
+from mypy 2.0. Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">maybe_convert</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">b</span><span class="p">:</span>
         <span class="n">x</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Assign &quot;str&quot;</span>
@@ -1238,7 +1238,21 @@ provides good balance for majority of common use cases. For example:</p>
 </pre></div>
 </div>
 <p>Note: We are planning to turn this flag on by default in a future mypy
-release, along with <a class="reference internal" href="#confval-local_partial_types"><code class="xref std std-confval docutils literal notranslate"><span class="pre">local_partial_types</span></code></a>.</p>
+release.</p>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-allow_redefinition_new">
+<span class="sig-name descname"><span class="pre">allow_redefinition_new</span></span><a class="headerlink" href="#confval-allow_redefinition_new" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+<dt class="field-even">Default<span class="colon">:</span></dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+<p>Deprecated alias for <a class="reference internal" href="#confval-allow_redefinition"><code class="xref std std-confval docutils literal notranslate"><span class="pre">allow_redefinition</span></code></a>.</p>
 </dd></dl>
 
 <dl class="std confval">
@@ -1272,21 +1286,6 @@ Example where this can be useful:</p>
 </dd></dl>
 
 <dl class="std confval">
-<dt class="sig sig-object std" id="confval-allow_redefinition">
-<span class="sig-name descname"><span class="pre">allow_redefinition</span></span><a class="headerlink" href="#confval-allow_redefinition" title="Link to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>boolean</p>
-</dd>
-<dt class="field-even">Default<span class="colon">:</span></dt>
-<dd class="field-even"><p>False</p>
-</dd>
-</dl>
-<p>An alias to <a class="reference internal" href="#confval-allow_redefinition_old"><code class="xref std std-confval docutils literal notranslate"><span class="pre">allow_redefinition_old</span></code></a>, in mypy v2.0 this will point to
-<a class="reference internal" href="#confval-allow_redefinition_new"><code class="xref std std-confval docutils literal notranslate"><span class="pre">allow_redefinition_new</span></code></a>, and will eventually became the default.</p>
-</dd></dl>
-
-<dl class="std confval">
 <dt class="sig sig-object std" id="confval-local_partial_types">
 <span class="sig-name descname"><span class="pre">local_partial_types</span></span><a class="headerlink" href="#confval-local_partial_types" title="Link to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
@@ -1294,12 +1293,12 @@ Example where this can be useful:</p>
 <dd class="field-odd"><p>boolean</p>
 </dd>
 <dt class="field-even">Default<span class="colon">:</span></dt>
-<dd class="field-even"><p>False</p>
+<dd class="field-even"><p>True</p>
 </dd>
 </dl>
-<p>Disallows inferring variable type for <code class="docutils literal notranslate"><span class="pre">None</span></code> from two assignments in different scopes.
-This is always implicitly enabled when using the <a class="reference internal" href="mypy_daemon.html#mypy-daemon"><span class="std std-ref">mypy daemon</span></a>.
-This will be enabled by default in mypy v2.0 release.</p>
+<p>This prevents inferring a variable type from an empty container (such as a list or
+a dictionary) created at module top level or class body and updated in
+a function. This must be enabled when using the <a class="reference internal" href="mypy_daemon.html#mypy-daemon"><span class="std std-ref">mypy daemon</span></a>.</p>
 </dd></dl>
 
 <dl class="std confval">
@@ -1404,11 +1403,11 @@ to be activated).</p>
 <dd class="field-odd"><p>boolean</p>
 </dd>
 <dt class="field-even">Default<span class="colon">:</span></dt>
-<dd class="field-even"><p>False</p>
+<dd class="field-even"><p>True</p>
 </dd>
 </dl>
-<p>Disable treating <code class="docutils literal notranslate"><span class="pre">bytearray</span></code> and <code class="docutils literal notranslate"><span class="pre">memoryview</span></code> as subtypes of <code class="docutils literal notranslate"><span class="pre">bytes</span></code>.
-This will be enabled by default in <em>mypy 2.0</em>.</p>
+<p>If disabled, mypy treats <code class="docutils literal notranslate"><span class="pre">bytearray</span></code> and <code class="docutils literal notranslate"><span class="pre">memoryview</span></code> as subtypes of <code class="docutils literal notranslate"><span class="pre">bytes</span></code>.
+This has been enabled by default since mypy 2.0.</p>
 </dd></dl>
 
 <dl class="std confval">
@@ -1645,6 +1644,25 @@ check and regenerate the cache if it was written by older versions of mypy.)</p>
 </dd></dl>
 
 </section>
+<section id="parallel-type-checking-configuration">
+<h2>Parallel type-checking configuration<a class="headerlink" href="#parallel-type-checking-configuration" title="Link to this heading">¶</a></h2>
+<p>These options may only be set in the global section (<code class="docutils literal notranslate"><span class="pre">[mypy]</span></code>).</p>
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-num_workers">
+<span class="sig-name descname"><span class="pre">num_workers</span></span><a class="headerlink" href="#confval-num_workers" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>integer</p>
+</dd>
+<dt class="field-even">Default<span class="colon">:</span></dt>
+<dd class="field-even"><p>0</p>
+</dd>
+</dl>
+<p>Use specific number of parallel worker processes for type-checking, see
+<a class="reference internal" href="command_line.html#parallel"><span class="std std-ref">parallel type-checking</span></a> for more details.</p>
+</dd></dl>
+
+</section>
 <section id="advanced-options">
 <h2>Advanced options<a class="headerlink" href="#advanced-options" title="Link to this heading">¶</a></h2>
 <p>These options may only be set in the global section (<code class="docutils literal notranslate"><span class="pre">[mypy]</span></code>).</p>
@@ -1743,6 +1761,21 @@ for example try <code class="docutils literal notranslate"><span class="pre">MYP
 </dl>
 <p>Warns about missing type annotations in typeshed.  This is only relevant
 in combination with <a class="reference internal" href="#confval-disallow_untyped_defs"><code class="xref std std-confval docutils literal notranslate"><span class="pre">disallow_untyped_defs</span></code></a> or <a class="reference internal" href="#confval-disallow_incomplete_defs"><code class="xref std std-confval docutils literal notranslate"><span class="pre">disallow_incomplete_defs</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-native_parser">
+<span class="sig-name descname"><span class="pre">native_parser</span></span><a class="headerlink" href="#confval-native_parser" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+<dt class="field-even">Default<span class="colon">:</span></dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+<p>This enables fast Rust-based parser that parses directly to mypy AST.
+It will become the default parser in one of the next mypy releases.</p>
 </dd></dl>
 
 </section>
@@ -1996,7 +2029,7 @@ of your repo (or append it to the end of an existing <code class="docutils liter
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="c1"># mypy global options:</span>
 
 <span class="k">[tool.mypy]</span>
-<span class="n">python_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;3.9&quot;</span>
+<span class="n">python_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;3.10&quot;</span>
 <span class="n">warn_return_any</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 <span class="n">warn_unused_configs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 <span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
@@ -2095,6 +2128,7 @@ of your repo (or append it to the end of an existing <code class="docutils liter
 <li><a class="reference internal" href="#miscellaneous-strictness-flags">Miscellaneous strictness flags</a></li>
 <li><a class="reference internal" href="#configuring-error-messages">Configuring error messages</a></li>
 <li><a class="reference internal" href="#incremental-mode">Incremental mode</a></li>
+<li><a class="reference internal" href="#parallel-type-checking-configuration">Parallel type-checking configuration</a></li>
 <li><a class="reference internal" href="#advanced-options">Advanced options</a></li>
 <li><a class="reference internal" href="#report-generation">Report generation</a></li>
 <li><a class="reference internal" href="#miscellaneous">Miscellaneous</a></li>
@@ -2111,7 +2145,7 @@ of your repo (or append it to the end of an existing <code class="docutils liter
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=b9eefb84"></script>
+</div><script src="_static/documentation_options.js?v=51b770b3"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/scripts/furo.js?v=46bd48cc"></script>
