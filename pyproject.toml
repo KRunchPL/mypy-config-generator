@@ -25,9 +25,9 @@ packages = [
 
 [dependency-groups]
 dev = [
-    "darglint",
     "flake8",
     "mypy",
+    "pydoclint",
     "pytest",
     "pytest-cov",
     "pytest-mock",

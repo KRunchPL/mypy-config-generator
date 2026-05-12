@@ -44,6 +44,8 @@ class Setting:
 class Section:
     """
     Single mypy configuration section.
+
+    :param name: section name
     """
 
     def __init__(self, name: str) -> None:
@@ -61,6 +63,8 @@ class Section:
 class MypyConfiguration:
     """
     Whole Mypy configuration.
+
+    :param version: mypy version
     """
 
     def __init__(self, version: str) -> None:

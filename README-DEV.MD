@@ -128,13 +128,13 @@ Static checkers are being run on the repository by the PR checker, and therefore
 
 #### Linter
 
-`ruff` is the linter of choice for this repository. Additionally, `darglint` is used to check docstrings content (arguments, returns, etc.). As `darglint` has limited configuration capabilities when it comes to choosing linted files, `flake8` is used as `darglint`'s wrapper.
+`ruff` is the linter of choice for this repository. Additionally, `pydoclint` is used to check docstrings content (arguments, returns, etc.). As `pydoclint` has limited configuration capabilities when it comes to choosing linted files, `flake8` is used as `pydoclint`'s wrapper.
 
 To lint all python code use the `ruff .` and `flake8` commands in the main folder of the repo.
 
 Full linting reports from both tools will be written to standard output.
 
-`flake8` and `darglint` configuration is in the `.flake8` file.
+`flake8` and `pydoclint` configuration is in the `.flake8` file.
 
 `ruff` configuration is in the `ruff.toml` file.
 
