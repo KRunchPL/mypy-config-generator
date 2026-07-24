@@ -1,0 +1,6 @@
+workdir = "workdir"
+settings_html_file_name = 'settings.html'
+version_file_name = 'version.txt'
+default_values_file_name = 'default.ini'
+adjusted_values_file_name = 'adjusted.ini'
+overrides = {}

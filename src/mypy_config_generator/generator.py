@@ -2,14 +2,7 @@ import re
 
 import bs4
 
-from .configuration import (
-    ADJUSTED_CONFIGURATION_FILE,
-    CONFIGURATION_FILE,
-    OVERRIDE_DEFAULT_VALUES,
-    SETTINGS_HTML_FILE,
-    STRICT_STRING,
-    VERSION_FILE,
-)
+from .app_config import AppConfiguration
 
 
 class Setting:
@@ -132,17 +125,19 @@ disallow_incomplete_defs = True
         return '\n'.join(lines)
 
 
-def generate_configuration() -> None:
+def generate_configuration(app_config: AppConfiguration) -> None:
     """
     Generate configuration file.
+
+    :param app_config: application configuration
     """
-    e_page = bs4.BeautifulSoup(SETTINGS_HTML_FILE.read_text(encoding='utf-8'), 'html.parser')
+    e_page = bs4.BeautifulSoup(app_config.settings_html_file.read_text(encoding='utf-8'), 'html.parser')
     (e_article,) = list(e_page.find_all('article'))
     assert isinstance(e_article, bs4.Tag)
     e_main_section = e_article.findChild('section')
     assert isinstance(e_main_section, bs4.Tag)
     version = re.search(r'mypy (\d+\.\d+.\d+) documentation', e_page.find('title').text).groups()[0]  # type: ignore [union-attr]
-    VERSION_FILE.write_text(version, encoding='utf-8')
+    app_config.version_file.write_text(version, encoding='utf-8')
     config = MypyConfiguration(version)
     for e_section in e_main_section.findChildren('section'):
         section_name = e_section.findChild('h2').contents[0]
@@ -163,16 +158,6 @@ def generate_configuration() -> None:
                 e_paragraph.text for e_paragraph in e_setting_description.findChildren('p', recursive=False)
             ]
             config.new_setting(setting_name, default_value, comments)
-    CONFIGURATION_FILE.write_text(str(config), encoding='utf-8')
-
-    def _parse_flag(flag: str) -> tuple[str, str]:
-        if flag.startswith('no_'):
-            return flag[3:], 'False'
-        return flag, 'True'
-
-    overrides = OVERRIDE_DEFAULT_VALUES | dict(
-        _parse_flag(flag.strip('-').replace('-', '_'))
-        for flag in ''.join(line.strip() for line in STRICT_STRING.splitlines()).split(', ')
-    )
-    config.update_default_values(overrides)
-    ADJUSTED_CONFIGURATION_FILE.write_text(str(config), encoding='utf-8')
+    app_config.default_values_file.write_text(str(config), encoding='utf-8')
+    config.update_default_values(app_config.overrides)
+    app_config.adjusted_values_file.write_text(str(config), encoding='utf-8')

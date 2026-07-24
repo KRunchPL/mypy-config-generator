@@ -1,7 +1,42 @@
 import sys
+from pathlib import Path
 
-from .main import main
+import typer
+from loguru import logger
+from typer_config import use_multifile_config
+
+from mypy_config_generator.app_config import AppConfiguration
+from mypy_config_generator.downloader import download_settings_page
+from mypy_config_generator.generator import generate_configuration
+
+
+app = typer.Typer()
+
+
+_DEFAULT_CONFIG = (Path(__file__).parent / 'default_config.toml').absolute()
+
+
+def _setup_logger() -> None:
+    logger.remove()
+    logger.add(
+        sys.stdout,
+        level='INFO',
+        format=(
+            '<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> | '
+            '<level>{level: <8}</level> | '
+            '<level>{message}</level>'
+        ),
+    )
+
+
+@app.command()
+@use_multifile_config(default_files=[str(_DEFAULT_CONFIG)])
+def _(ctx: typer.Context) -> None:
+    config = AppConfiguration.model_validate(ctx.default_map)
+    _setup_logger()
+    download_settings_page(config)
+    generate_configuration(config)
 
 
 if __name__ == '__main__':
-    sys.exit(main())
+    app()

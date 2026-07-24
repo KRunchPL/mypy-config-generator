@@ -1,26 +1,18 @@
 [project]
 name = "mypy-config-generator"
+dynamic = ["version"]
 description = "Generates mypy configuration"
-version = "1.0.0"
-authors = [
-    { name = "KRunchPL", email = "krunchfrompoland@gmail.com" },
-]
+authors = [{ name = "KRunchPL", email = "krunchfrompoland@gmail.com" }]
 license = "Apache-2.0"
 readme = "README.md"
 requires-python = ">=3.14,<4"
 dependencies = [
-    "beautifulsoup4 ==4.14.2",
-    "requests ==2.32.5",
-]
-
-[project.urls]
-homepage = "https://github.com/KRunchPL/mypy-config-generator"
-repository = "https://github.com/KRunchPL/mypy-config-generator"
-documentation = "https://github.com/KRunchPL/mypy-config-generator"
-
-[tool.hatch.build.targets.wheel]
-packages = [
-    "src/mypy_config_generator",
+    "beautifulsoup4 >=4.15.0,<5.0.0",
+    "loguru >=0.7.3,<0.8.0",
+    "pydantic >=2.13.4,<3.0.0",
+    "requests >=2.32.5,<3.0.0",
+    "typer >=0.27.0,<0.28.0",
+    "typer-config >=1.5.1,<2.0.0",
 ]
 
 [dependency-groups]
@@ -32,10 +24,29 @@ dev = [
     "pytest-cov",
     "pytest-mock",
     "ruff",
-    "types-beautifulsoup4 ==4.12.0.20250516",
-    "types-requests ==2.32.4.20250913",
+    "types-beautifulsoup4",
+    "types-requests",
 ]
 
+[project.urls]
+homepage = "https://github.com/KRunchPL/mypy-config-generator"
+repository = "https://github.com/KRunchPL/mypy-config-generator"
+documentation = "https://github.com/KRunchPL/mypy-config-generator"
+
+[project.scripts]
+mypy_config_generator = "mypy_config_generator.__main__:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mypy_config_generator"]
+
+[tool.hatch.version]
+scheme = "semver"
+path = "version.txt"
+pattern = "(?P<version>.*)"
+
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-semver"]
 build-backend = "hatchling.build"
+
+[tool.uv]
+system-certs = true
