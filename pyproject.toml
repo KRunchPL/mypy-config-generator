@@ -34,6 +34,7 @@ repository = "https://github.com/KRunchPL/mypy-config-generator"
 documentation = "https://github.com/KRunchPL/mypy-config-generator"
 
 [project.scripts]
+mypy-config-generator = "mypy_config_generator.__main__:app"
 mypy_config_generator = "mypy_config_generator.__main__:app"
 
 [tool.hatch.build.targets.wheel]
