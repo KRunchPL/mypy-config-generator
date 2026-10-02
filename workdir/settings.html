@@ -7,7 +7,7 @@
         <link rel="prefetch" href="_static/mypy_light.svg" as="image">
 
     <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
-        <title>The mypy configuration file - mypy 2.3.1 documentation</title>
+        <title>The mypy configuration file - mypy 2.4.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
@@ -163,7 +163,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">mypy 2.3.1 documentation</div></a>
+      <a href="index.html"><div class="brand">mypy 2.4.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -187,7 +187,7 @@
     <img class="sidebar-logo" src="_static/mypy_light.svg" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">mypy 2.3.1 documentation</span>
+  <span class="sidebar-brand-text">mypy 2.4.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -521,9 +521,9 @@ which mypy should ignore while recursively discovering files to check.
 Use forward slashes (<code class="docutils literal notranslate"><span class="pre">/</span></code>) as directory separators on all platforms.</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[mypy]</span>
 <span class="na">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">(?x)(</span>
-<span class="w">    </span><span class="na">^one\.py$    # files named &quot;one.py&quot;</span>
-<span class="w">    </span><span class="na">| two\.pyi$  # or files ending with &quot;two.pyi&quot;</span>
-<span class="w">    </span><span class="na">| ^three\.   # or files starting with &quot;three.&quot;</span>
+<span class="w">    </span><span class="na">^one\.py$    # files named "one.py"</span>
+<span class="w">    </span><span class="na">| two\.pyi$  # or files ending with "two.pyi"</span>
+<span class="w">    </span><span class="na">| ^three\.   # or files starting with "three."</span>
 <span class="w">  </span><span class="na">)</span>
 </pre></div>
 </div>
@@ -543,19 +543,19 @@ equivalent to the above INI example.</p>
 <p>Array of strings:</p>
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[tool.mypy]</span>
 <span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s2">&quot;^one</span><span class="se">\\</span><span class="s2">.py$&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># TOML&#39;s double-quoted strings require escaping backslashes</span>
-<span class="w">    </span><span class="s1">&#39;two\.pyi$&#39;</span><span class="p">,</span><span class="w">  </span><span class="c1"># but TOML&#39;s single-quoted strings do not</span>
-<span class="w">    </span><span class="s1">&#39;^three\.&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"^one</span><span class="se">\\</span><span class="s2">.py$"</span><span class="p">,</span><span class="w">  </span><span class="c1"># TOML's double-quoted strings require escaping backslashes</span>
+<span class="w">    </span><span class="s1">'two\.pyi$'</span><span class="p">,</span><span class="w">  </span><span class="c1"># but TOML's single-quoted strings do not</span>
+<span class="w">    </span><span class="s1">'^three\.'</span><span class="p">,</span>
 <span class="p">]</span>
 </pre></div>
 </div>
 <p>A single, multi-line string:</p>
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[tool.mypy]</span>
-<span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;&#39;(?x)(</span>
-<span class="s1">    ^one\.py$    # files named &quot;one.py&quot;</span>
-<span class="s1">    | two\.pyi$  # or files ending with &quot;two.pyi&quot;</span>
-<span class="s1">    | ^three\.   # or files starting with &quot;three.&quot;</span>
-<span class="s1">)&#39;&#39;&#39;</span><span class="w">  </span><span class="c1"># TOML&#39;s single-quoted strings do not require escaping backslashes</span>
+<span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'''(?x)(</span>
+<span class="s1">    ^one\.py$    # files named "one.py"</span>
+<span class="s1">    | two\.pyi$  # or files ending with "two.pyi"</span>
+<span class="s1">    | ^three\.   # or files starting with "three."</span>
+<span class="s1">)'''</span><span class="w">  </span><span class="c1"># TOML's single-quoted strings do not require escaping backslashes</span>
 </pre></div>
 </div>
 <p>See <a class="reference internal" href="#using-a-pyproject-toml"><span class="std std-ref">Using a pyproject.toml file</span></a>.</p>
@@ -1208,10 +1208,10 @@ variables with an arbitrary type. This also requires
 from mypy 2.0. Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">maybe_convert</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">b</span><span class="p">:</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Assign &quot;str&quot;</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Assign "str"</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">n</span>       <span class="c1"># Assign &quot;int&quot;</span>
-    <span class="c1"># Type of &quot;x&quot; is &quot;int | str&quot; here.</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">n</span>       <span class="c1"># Assign "int"</span>
+    <span class="c1"># Type of "x" is "int | str" here.</span>
     <span class="k">return</span> <span class="n">x</span>
 </pre></div>
 </div>
@@ -1219,11 +1219,11 @@ from mypy 2.0. Example:</p>
 code locations:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">check</span><span class="p">():</span>
     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="c1"># Type of &quot;x&quot; is &quot;int&quot; here.</span>
+        <span class="c1"># Type of "x" is "int" here.</span>
         <span class="o">...</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]:</span>
-        <span class="c1"># Type of &quot;x&quot; is &quot;str&quot; here.</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">]:</span>
+        <span class="c1"># Type of "x" is "str" here.</span>
         <span class="o">...</span>
 </pre></div>
 </div>
@@ -1270,16 +1270,16 @@ release.</p>
 is in the same block and nesting level as the original definition.
 Example where this can be useful:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="n">items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="c1"># &#39;items&#39; has type list[str]</span>
+    <span class="c1"># 'items' has type list[str]</span>
     <span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">]</span>
-    <span class="c1"># &#39;items&#39; now has type list[list[str]]</span>
+    <span class="c1"># 'items' now has type list[list[str]]</span>
 </pre></div>
 </div>
 <p>The variable must be used before it can be redefined:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="n">items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-   <span class="n">items</span> <span class="o">=</span> <span class="s2">&quot;mypy&quot;</span>  <span class="c1"># invalid redefinition to str because the variable hasn&#39;t been used yet</span>
+   <span class="n">items</span> <span class="o">=</span> <span class="s2">"mypy"</span>  <span class="c1"># invalid redefinition to str because the variable hasn't been used yet</span>
    <span class="nb">print</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
-   <span class="n">items</span> <span class="o">=</span> <span class="s2">&quot;100&quot;</span>  <span class="c1"># valid, items now has type str</span>
+   <span class="n">items</span> <span class="o">=</span> <span class="s2">"100"</span>  <span class="c1"># valid, items now has type str</span>
    <span class="n">items</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>  <span class="c1"># valid, items now has type int</span>
 </pre></div>
 </div>
@@ -1354,13 +1354,13 @@ See <a class="reference internal" href="command_line.html#cmdoption-mypy-extra-c
 other modules to import them. When false, mypy will not re-export unless
 the item is imported using from-as or is included in <code class="docutils literal notranslate"><span class="pre">__all__</span></code>. Note that mypy
 treats stub files as if this is always disabled. For example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This won&#39;t re-export the value</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This won't re-export the value</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">foo</span><span class="w"> </span><span class="kn">import</span> <span class="n">bar</span>
 <span class="c1"># This will re-export it as bar and allow other modules to import it</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">foo</span><span class="w"> </span><span class="kn">import</span> <span class="n">bar</span> <span class="k">as</span> <span class="n">bar</span>
 <span class="c1"># This will also re-export bar</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">foo</span><span class="w"> </span><span class="kn">import</span> <span class="n">bar</span>
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bar&#39;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'bar'</span><span class="p">]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1652,16 +1652,17 @@ check and regenerate the cache if it was written by older versions of mypy.)</p>
 <span class="sig-name descname"><span class="pre">num_workers</span></span><a class="headerlink" href="#confval-num_workers" title="Link to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>integer</p>
+<dd class="field-odd"><p>integer or string</p>
 </dd>
 <dt class="field-even">Default<span class="colon">:</span></dt>
 <dd class="field-even"><p>0</p>
 </dd>
 </dl>
-<p>Use specific number of parallel worker processes for type-checking, see
-<a class="reference internal" href="command_line.html#parallel"><span class="std std-ref">parallel type-checking</span></a> for more details.
-This setting will be overridden by the <code class="docutils literal notranslate"><span class="pre">MYPY_NUM_WORKERS</span></code> environment
-variable.</p>
+<p>Use a specific number of parallel worker processes for type-checking or
+the value <code class="docutils literal notranslate"><span class="pre">auto</span></code> to select the number based on the CPUs available to mypy.
+See <a class="reference internal" href="command_line.html#parallel"><span class="std std-ref">parallel type-checking</span></a> for more details.
+The <code class="docutils literal notranslate"><span class="pre">MYPY_NUM_WORKERS</span></code> environment variable accepts the same values and
+overrides this setting.</p>
 </dd></dl>
 
 </section>
@@ -1773,11 +1774,13 @@ in combination with <a class="reference internal" href="#confval-disallow_untype
 <dd class="field-odd"><p>boolean</p>
 </dd>
 <dt class="field-even">Default<span class="colon">:</span></dt>
-<dd class="field-even"><p>False</p>
+<dd class="field-even"><p>True</p>
 </dd>
 </dl>
-<p>This enables fast Rust-based parser that parses directly to mypy AST.
-It will become the default parser in one of the next mypy releases.</p>
+<p>Use the fast Rust-based native parser that parses directly to mypy AST.
+Set this to <code class="docutils literal notranslate"><span class="pre">False</span></code> to use the legacy parser based on the stdlib
+<a class="reference external" href="https://docs.python.org/3/library/ast.html#module-ast" title="(in Python v3.14)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ast</span></code></a> module instead. See <a class="reference internal" href="command_line.html#cmdoption-mypy-no-native-parser"><code class="xref std std-option docutils literal notranslate"><span class="pre">--no-native-parser</span></code></a>
+for more details.</p>
 </dd></dl>
 
 </section>
@@ -1956,8 +1959,7 @@ useful when checking multiple scripts in a single run.</p>
 </dd>
 </dl>
 <p>Warns about per-module sections in the config file that do not
-match any files processed when invoking mypy.
-(This requires turning off incremental mode using <a class="reference internal" href="#confval-incremental"><code class="xref std std-confval docutils literal notranslate"><span class="pre">incremental</span> <span class="pre">=</span> <span class="pre">False</span></code></a>.)</p>
+match any files processed when invoking mypy.</p>
 </dd></dl>
 
 <dl class="std confval">
@@ -1992,7 +1994,7 @@ match any files processed when invoking mypy.
 </li>
 </ul>
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[[tool.mypy.overrides]]</span>
-<span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;packagename&#39;</span>
+<span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'packagename'</span>
 <span class="p">...</span>
 </pre></div>
 </div>
@@ -2006,8 +2008,8 @@ module property set to an array of modules:</p>
 </ul>
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[[tool.mypy.overrides]]</span>
 <span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s1">&#39;packagename&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;packagename2&#39;</span>
+<span class="w">    </span><span class="s1">'packagename'</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">'packagename2'</span>
 <span class="p">]</span>
 <span class="p">...</span>
 </pre></div>
@@ -2031,28 +2033,28 @@ of your repo (or append it to the end of an existing <code class="docutils liter
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="c1"># mypy global options:</span>
 
 <span class="k">[tool.mypy]</span>
-<span class="n">python_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;3.10&quot;</span>
+<span class="n">python_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"3.10"</span>
 <span class="n">warn_return_any</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 <span class="n">warn_unused_configs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 <span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s1">&#39;^file1\.py$&#39;</span><span class="p">,</span><span class="w">  </span><span class="c1"># TOML literal string (single-quotes, no escaping necessary)</span>
-<span class="w">    </span><span class="s2">&quot;^file2</span><span class="se">\\</span><span class="s2">.py$&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># TOML basic string (double-quotes, backslash and other characters need escaping)</span>
+<span class="w">    </span><span class="s1">'^file1\.py$'</span><span class="p">,</span><span class="w">  </span><span class="c1"># TOML literal string (single-quotes, no escaping necessary)</span>
+<span class="w">    </span><span class="s2">"^file2</span><span class="se">\\</span><span class="s2">.py$"</span><span class="p">,</span><span class="w">  </span><span class="c1"># TOML basic string (double-quotes, backslash and other characters need escaping)</span>
 <span class="p">]</span>
 
 <span class="c1"># mypy per-module options:</span>
 
 <span class="k">[[tool.mypy.overrides]]</span>
-<span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;mycode.foo.*&quot;</span>
+<span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"mycode.foo.*"</span>
 <span class="n">disallow_untyped_defs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 
 <span class="k">[[tool.mypy.overrides]]</span>
-<span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;mycode.bar&quot;</span>
+<span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"mycode.bar"</span>
 <span class="n">warn_return_any</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
 
 <span class="k">[[tool.mypy.overrides]]</span>
 <span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s2">&quot;somelibrary&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;some_other_library&quot;</span>
+<span class="w">    </span><span class="s2">"somelibrary"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"some_other_library"</span>
 <span class="p">]</span>
 <span class="n">ignore_missing_imports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </pre></div>
@@ -2147,7 +2149,7 @@ of your repo (or append it to the end of an existing <code class="docutils liter
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=67b02a41"></script>
+</div><script src="_static/documentation_options.js?v=4d935f96"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/scripts/furo.js?v=46bd48cc"></script>
