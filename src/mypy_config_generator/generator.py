@@ -53,6 +53,29 @@ class Section:
         return '\n'.join(lines)
 
 
+class Module:
+    """
+    Single mypy configuration module.
+
+    :param name: module name
+    :param comment: module comment
+    """
+
+    def __init__(self, name: str, comment: str | None) -> None:
+        self.name = name
+        self.comment = comment
+        self.settings: list[Setting] = []
+
+    def __str__(self) -> str:
+        lines: list[str] = []
+        if self.comment:
+            lines.append(f'# {self.comment.strip()}')
+        lines.append(f'[{self.name}]')
+        lines.extend(str(setting).strip() for setting in self.settings)
+        lines.append('')
+        return '\n'.join(lines)
+
+
 class MypyConfiguration:
     """
     Whole Mypy configuration.
@@ -63,6 +86,7 @@ class MypyConfiguration:
     def __init__(self, version: str) -> None:
         self.version = version
         self.sections: list[Section] = []
+        self.modules: list[Module] = []
 
     def new_section(self, name: str) -> None:
         """
@@ -110,18 +134,7 @@ class MypyConfiguration:
             if not section.settings:
                 continue
             lines.append(str(section))
-        lines.append("""\
-# This section should only define values that are different than in global section
-[mypy-tests.*]
-disallow_untyped_defs = False
-disallow_incomplete_defs = False
-
-
-# Conftests should be checked in the same manner as production code, so they revert `tests.*` overwrites
-[mypy-tests.*.conftest]
-disallow_untyped_defs = True
-disallow_incomplete_defs = True
-""")
+        lines.extend(str(module) for module in self.modules)
         return '\n'.join(lines)
 
 
@@ -160,4 +173,11 @@ def generate_configuration(app_config: AppConfiguration) -> None:
             config.new_setting(setting_name, default_value, comments)
     app_config.default_values_file.write_text(str(config), encoding='utf-8')
     config.update_default_values(app_config.overrides)
+    for module_name, module_overrides in app_config.modules.items():
+        config.modules.append(module := Module(f'mypy-{module_name}', module_overrides.pop('comment', None)))
+        for setting_name, setting_value in module_overrides.items():
+            setting = Setting()
+            setting.name = setting_name
+            setting.default_value = setting_value
+            module.settings.append(setting)
     app_config.adjusted_values_file.write_text(str(config), encoding='utf-8')

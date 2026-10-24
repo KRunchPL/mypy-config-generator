@@ -2,7 +2,7 @@ from functools import cached_property
 from pathlib import Path
 from typing import Annotated
 
-from pydantic import AfterValidator, BaseModel, ValidationInfo
+from pydantic import AfterValidator, BaseModel, Field, ValidationInfo
 
 
 def _ensure_folder_exists(value: Path, info: ValidationInfo) -> Path:
@@ -27,6 +27,7 @@ class AppConfiguration(BaseModel):
     default_values_file_name: str
     adjusted_values_file_name: str
     overrides: dict[str, str]
+    modules: Annotated[dict[str, dict[str, str]], Field(default_factory=dict)]
 
     @cached_property
     def settings_html_file(self) -> Path:

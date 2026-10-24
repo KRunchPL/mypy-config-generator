@@ -17,3 +17,13 @@ warn_return_any = 'True'
 extra_checks = 'True'
 implicit_reexport = 'False'
 strict_equality = 'True'
+
+[modules."tests.*"]
+comment = 'This section should only define values that are different than in global section'
+disallow_untyped_defs = 'False'
+disallow_incomplete_defs = 'False'
+
+[modules."tests.*.conftest"]
+comment = 'Conftests should be checked in the same manner as production code, so they revert `tests.*` overwrites'
+disallow_untyped_defs = 'True'
+disallow_incomplete_defs = 'True'
