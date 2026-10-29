@@ -7,7 +7,7 @@
         <link rel="prefetch" href="_static/mypy_light.svg" as="image">
 
     <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
-        <title>The mypy configuration file - mypy 2.4.0 documentation</title>
+        <title>The mypy configuration file - mypy 2.4.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
@@ -163,7 +163,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">mypy 2.4.0 documentation</div></a>
+      <a href="index.html"><div class="brand">mypy 2.4.1 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -187,7 +187,7 @@
     <img class="sidebar-logo" src="_static/mypy_light.svg" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">mypy 2.4.0 documentation</span>
+  <span class="sidebar-brand-text">mypy 2.4.1 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -329,7 +329,7 @@ To expand environment variables use <code class="docutils literal notranslate"><
 <section id="config-file-format">
 <h2>Config file format<a class="headerlink" href="#config-file-format" title="Link to this heading">¶</a></h2>
 <p>The configuration file format is the usual
-<a class="reference external" href="https://docs.python.org/3/library/configparser.html" title="(in Python v3.14)"><span class="xref std std-doc">ini file</span></a> format. It should contain
+<a class="reference external" href="https://docs.python.org/3/library/configparser.html" title="(in Python v3.15)"><span class="xref std std-doc">ini file</span></a> format. It should contain
 section names in square brackets and flag settings of the form
 <cite>NAME = VALUE</cite>. Comments start with <code class="docutils literal notranslate"><span class="pre">#</span></code> characters.</p>
 <ul>
@@ -473,7 +473,7 @@ the config file (e.g. <code class="docutils literal notranslate"><span class="pr
 </dd>
 </dl>
 <p>A comma-separated list of paths which should be checked by mypy if none are given on the command
-line. Supports recursive file globbing using <a class="reference external" href="https://docs.python.org/3/library/glob.html#module-glob" title="(in Python v3.14)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">glob</span></code></a>, where <code class="docutils literal notranslate"><span class="pre">*</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">*.py</span></code>) matches
+line. Supports recursive file globbing using <a class="reference external" href="https://docs.python.org/3/library/glob.html#module-glob" title="(in Python v3.15)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">glob</span></code></a>, where <code class="docutils literal notranslate"><span class="pre">*</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">*.py</span></code>) matches
 files in the current directory and <code class="docutils literal notranslate"><span class="pre">**/</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">**/*.py</span></code>) matches files in any directories below
 the current one. User home directory and environment variables will be expanded.</p>
 <p>This option may only be set in the global section (<code class="docutils literal notranslate"><span class="pre">[mypy]</span></code>).</p>
@@ -530,7 +530,7 @@ Use forward slashes (<code class="docutils literal notranslate"><span class="pre
 <p>Crafting a single regular expression that excludes multiple files while remaining
 human-readable can be a challenge. The above example demonstrates one approach.
 <code class="docutils literal notranslate"><span class="pre">(?x)</span></code> enables the <code class="docutils literal notranslate"><span class="pre">VERBOSE</span></code> flag for the subsequent regular expression, which
-<a class="reference external" href="https://docs.python.org/3/library/re.html#re.VERBOSE" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">ignores</span> <span class="pre">most</span> <span class="pre">whitespace</span> <span class="pre">and</span> <span class="pre">supports</span> <span class="pre">comments</span></code></a>.
+<a class="reference external" href="https://docs.python.org/3/library/re.html#re.VERBOSE" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">ignores</span> <span class="pre">most</span> <span class="pre">whitespace</span> <span class="pre">and</span> <span class="pre">supports</span> <span class="pre">comments</span></code></a>.
 The above is equivalent to: <code class="docutils literal notranslate"><span class="pre">(^one\.py$|two\.pyi$|^three\.)</span></code>.</p>
 <p>For more details, see <a class="reference internal" href="command_line.html#cmdoption-mypy-exclude"><code class="xref std std-option docutils literal notranslate"><span class="pre">--exclude</span></code></a>.</p>
 <p>This option may only be set in the global section (<code class="docutils literal notranslate"><span class="pre">[mypy]</span></code>).</p>
@@ -782,7 +782,7 @@ interpreter used to run mypy.</p>
 <p>Specifies the OS platform for the target program, for example
 <code class="docutils literal notranslate"><span class="pre">darwin</span></code> or <code class="docutils literal notranslate"><span class="pre">win32</span></code> (meaning OS X or Windows, respectively).
 The default is the current platform as revealed by Python’s
-<a class="reference external" href="https://docs.python.org/3/library/sys.html#sys.platform" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.platform</span></code></a> variable.</p>
+<a class="reference external" href="https://docs.python.org/3/library/sys.html#sys.platform" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.platform</span></code></a> variable.</p>
 <p>This option may only be set in the global section (<code class="docutils literal notranslate"><span class="pre">[mypy]</span></code>).</p>
 </dd></dl>
 
@@ -1691,7 +1691,7 @@ overrides this setting.</p>
 <dd class="field-even"><p>False</p>
 </dd>
 </dl>
-<p>Invokes <a class="reference external" href="https://docs.python.org/3/library/pdb.html#module-pdb" title="(in Python v3.14)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pdb</span></code></a> on fatal error.</p>
+<p>Invokes <a class="reference external" href="https://docs.python.org/3/library/pdb.html#module-pdb" title="(in Python v3.15)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pdb</span></code></a> on fatal error.</p>
 </dd></dl>
 
 <dl class="std confval">
@@ -1730,7 +1730,7 @@ overrides this setting.</p>
 <dd class="field-odd"><p>string</p>
 </dd>
 </dl>
-<p>Specifies a custom module to use as a substitute for the <a class="reference external" href="https://docs.python.org/3/library/typing.html#module-typing" title="(in Python v3.14)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">typing</span></code></a> module.</p>
+<p>Specifies a custom module to use as a substitute for the <a class="reference external" href="https://docs.python.org/3/library/typing.html#module-typing" title="(in Python v3.15)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">typing</span></code></a> module.</p>
 </dd></dl>
 
 <dl class="std confval">
@@ -1779,7 +1779,7 @@ in combination with <a class="reference internal" href="#confval-disallow_untype
 </dl>
 <p>Use the fast Rust-based native parser that parses directly to mypy AST.
 Set this to <code class="docutils literal notranslate"><span class="pre">False</span></code> to use the legacy parser based on the stdlib
-<a class="reference external" href="https://docs.python.org/3/library/ast.html#module-ast" title="(in Python v3.14)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ast</span></code></a> module instead. See <a class="reference internal" href="command_line.html#cmdoption-mypy-no-native-parser"><code class="xref std std-option docutils literal notranslate"><span class="pre">--no-native-parser</span></code></a>
+<a class="reference external" href="https://docs.python.org/3/library/ast.html#module-ast" title="(in Python v3.15)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ast</span></code></a> module instead. See <a class="reference internal" href="command_line.html#cmdoption-mypy-no-native-parser"><code class="xref std std-option docutils literal notranslate"><span class="pre">--no-native-parser</span></code></a>
 for more details.</p>
 </dd></dl>
 
@@ -2149,7 +2149,7 @@ of your repo (or append it to the end of an existing <code class="docutils liter
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=4d935f96"></script>
+</div><script src="_static/documentation_options.js?v=e9ebdb8f"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/scripts/furo.js?v=46bd48cc"></script>
